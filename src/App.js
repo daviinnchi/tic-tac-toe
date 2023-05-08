@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { locations } from "./helpers/locations";
 import { xIsNext } from "./helpers/xIsNext";
 import Board from "./components/Board";
-import getAllIndexes from "./helpers/getAllIndexes"
+import getAllIndexes from "./helpers/getAllIndexes";
 
 export default function Game() {
   const [history, setHistory] = useState([Array(9).fill(null)]);
@@ -22,11 +22,9 @@ export default function Game() {
   const moves = history.map((squares, move) => {
     let description;
     if (move > 0) {
-      if (move === currentMove) {
-        description = "You are at move #" + move;
-      } else {
-        description = "Go to move #" + move;
-      }
+      move === currentMove
+        ? (description = "You are at move #" + move)
+        : (description = "Go to move #" + move);
     } else {
       description = "Go to game start";
     }
