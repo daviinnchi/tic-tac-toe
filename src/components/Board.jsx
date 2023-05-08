@@ -29,10 +29,11 @@ const Board = ({ xIsNext, squares, onPlay, currentMove }) => {
     <>
       <div className="status">{status}</div>
       {columns.map((squareIndex) => (
-        <div className="board-row">
+        <div className="board-row" key={squareIndex}>
           {squareIndex.map((index) => {
             return (
               <Square
+                key={index}
                 value={squares[index]}
                 handleClick={() => handleClick(index)}
                 squareId={index}
