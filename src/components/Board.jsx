@@ -4,7 +4,6 @@ import { getWinnerLine } from "../helpers/getWinnerLine";
 const Board = ({ xIsNext, squares, onPlay, currentMove }) => {
   const winner = calculateWinner(squares);
   const winnerLine = getWinnerLine(squares);
-  console.log(typeof winnerLine);
   let status;
   if (winner) {
     status = "Winner: " + winner[0];
