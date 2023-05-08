@@ -1,10 +1,13 @@
 import { Square } from "./Square";
 import calculateWinner from "../helpers/calculateWinner";
+import { getWinnerLine } from "../helpers/getWinnerLine";
 const Board = ({ xIsNext, squares, onPlay, currentMove }) => {
   const winner = calculateWinner(squares);
+  const winnerLine = getWinnerLine(squares);
+  console.log(typeof winnerLine);
   let status;
   if (winner) {
-    status = "Winner: " + winner;
+    status = "Winner: " + winner[0];
   } else {
     status = "Next player: " + (xIsNext ? "X" : "O");
   }
@@ -33,6 +36,7 @@ const Board = ({ xIsNext, squares, onPlay, currentMove }) => {
           {squareIndex.map((index) => {
             return (
               <Square
+                isWinner={winnerLine ? winnerLine.includes(index) : false}
                 key={index}
                 value={squares[index]}
                 handleClick={() => handleClick(index)}
