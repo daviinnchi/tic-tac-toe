@@ -2,6 +2,7 @@ import { Square } from "../Square";
 import calculateWinner from "../../helpers/calculateWinner";
 import { getWinnerLine } from "../../helpers/getWinnerLine";
 import { xIsNext } from "../../helpers/xIsNext";
+import "./Board.css"
 const Board = ({ squares, onPlay, currentMove }) => {
   const winner = calculateWinner(squares);
   const winnerLine = getWinnerLine(squares);
