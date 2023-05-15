@@ -1,14 +1,15 @@
 import { Square } from "./Square";
 import calculateWinner from "../helpers/calculateWinner";
 import { getWinnerLine } from "../helpers/getWinnerLine";
-const Board = ({ xIsNext, squares, onPlay, currentMove }) => {
+import { xIsNext } from "../helpers/xIsNext";
+const Board = ({ squares, onPlay, currentMove }) => {
   const winner = calculateWinner(squares);
   const winnerLine = getWinnerLine(squares);
   let status;
   if (winner) {
     status = "Winner: " + winner[0];
   } else {
-    status = "Next player: " + (xIsNext ? "X" : "O");
+    status = "Next player: " + (xIsNext(currentMove) ? "X" : "O");
   }
   if (!winner && currentMove === 9) {
     status = "It's a tie";
@@ -18,7 +19,7 @@ const Board = ({ xIsNext, squares, onPlay, currentMove }) => {
       return;
     }
     const nextSquares = squares.slice();
-    nextSquares[i] = xIsNext ? "X" : "O";
+    nextSquares[i] = xIsNext(currentMove) ? "X" : "O";
     onPlay(nextSquares);
   }
   const squareIndexes = squares.map((element, index) => index);

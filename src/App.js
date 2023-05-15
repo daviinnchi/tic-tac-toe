@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { locations } from "./helpers/locations";
-import { xIsNext } from "./helpers/xIsNext";
 import Board from "./components/Board";
 import getAllIndexes from "./helpers/getAllIndexes";
 
@@ -53,7 +52,6 @@ export default function Game() {
     <div className="game">
       <div className="game-board">
         <Board
-          xIsNext={xIsNext(currentMove)}
           squares={currentSquares}
           onPlay={handlePlay}
           currentMove={currentMove}
