@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { locations } from "./helpers/locations";
-import Board from "./components/Board";
+import Board from "./components/Board/Board";
 import getAllIndexes from "./helpers/getAllIndexes";
 
 export default function Game() {
