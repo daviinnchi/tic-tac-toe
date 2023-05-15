@@ -1,4 +1,4 @@
-import { Square } from "../Square";
+import { Square } from "../Square/Square";
 import calculateWinner from "../../helpers/calculateWinner";
 import { getWinnerLine } from "../../helpers/getWinnerLine";
 import { xIsNext } from "../../helpers/xIsNext";
