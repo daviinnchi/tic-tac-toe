@@ -1,5 +1,5 @@
 export default function getAllIndexes(arr, val) {
-    var indexes = [],
+    let indexes = [],
       i;
     indexes.forEach(() => indexes.push(val));
     return indexes;
