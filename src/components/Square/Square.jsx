@@ -1,3 +1,5 @@
+import "./Square.css";
+
 export const Square = ({ value, squareId, handleClick, isWinner }) => {
   return (
     <button
