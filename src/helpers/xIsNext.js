@@ -1,0 +1,1 @@
+export const xIsNext = (currentMove) => currentMove % 2 === 0;
