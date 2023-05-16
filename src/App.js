@@ -1,27 +1,28 @@
-import { useEffect, useState } from "react";
+import { useEffect, useReducer } from "react";
 import { locations } from "./helpers/locations";
 import Board from "./components/Board/Board";
 import getAllIndexes from "./helpers/getAllIndexes";
+import { reducer } from "./components/reducer";
 
 export default function Game() {
-  const [history, setHistory] = useState([Array(9).fill(null)]);
-  const [sortAsc, setSortAsc] = useState(null);
-  const [xMoves, setXMoves] = useState([]);
-  const [oMoves, setOMoves] = useState([]);
-  const [currentMove, setCurrentMove] = useState(0);
-  const currentSquares = history[currentMove];
+  const [state, dispatch] = useReducer(reducer, {
+    history: [Array(9).fill(null)],
+    currentMove: 0,
+    sortAsc: null,
+    xMoves: [],
+    oMoves: [],
+  });
+  const currentSquares = state.history[state.currentMove];
   function handlePlay(nextSquares) {
-    const nextHistory = [...history.slice(0, currentMove + 1), nextSquares];
-    setHistory(nextHistory);
-    setCurrentMove(nextHistory.length - 1);
+    dispatch({ type: "handlePlay", payload: nextSquares });
   }
   function jumpTo(nextMove) {
-    setCurrentMove(nextMove);
+    dispatch({ type: "jump_to_move", payload: nextMove });
   }
-  const moves = history.map((squares, move) => {
+  const moves = state.history.map((squares, move) => {
     let description;
     if (move > 0) {
-      move === currentMove
+      move === state.currentMove
         ? (description = "You are at move #" + move)
         : (description = "Go to move #" + move);
     } else {
@@ -34,18 +35,10 @@ export default function Game() {
     );
   });
   useEffect(() => {
-    setXMoves(
-      getAllIndexes(currentSquares, "X").map((element) => {
-        return locations[element];
-      })
-    );
-    setOMoves(
-      getAllIndexes(currentSquares, "O").map((element) => {
-        return locations[element];
-      })
-    );
+    dispatch({ type: "new_X_move", payload: currentSquares });
+    dispatch({ type: "new_O_move", payload: currentSquares });
   }, [currentSquares]);
-  if (!sortAsc) {
+  if (!state.sortAsc) {
     moves.reverse();
   }
   return (
@@ -54,22 +47,28 @@ export default function Game() {
         <Board
           squares={currentSquares}
           onPlay={handlePlay}
-          currentMove={currentMove}
+          currentMove={state.currentMove}
         />
       </div>
       <div className="game-info">
-        <button className="sort-btn" onClick={() => setSortAsc(true)}>
+        <button
+          className="sort-btn"
+          onClick={() => dispatch({ type: "sort_history", payload: true })}
+        >
           Sort by ascending order
         </button>
-        <button className="sort-btn" onClick={() => setSortAsc(false)}>
+        <button
+          className="sort-btn"
+          onClick={() => dispatch({ type: "sort_history", payload: false })}
+        >
           Sort by descending order
         </button>
         <ol>{moves}</ol>
         <div className="moves-info">
-          'X' player moves <br /> {xMoves}
+          'X' player moves <br /> {state.xMoves}
         </div>
         <div className="moves-info">
-          'O' player moves <br /> {oMoves}
+          'O' player moves <br /> {state.oMoves}
         </div>
       </div>
     </div>
