@@ -5,22 +5,21 @@ import getAllIndexes from "./helpers/getAllIndexes";
 import {reducer} from "./components/reducer";
 
 export default function Game() {
-  const [history, setHistory] = useState([Array(9).fill(null)]);
   const [state, dispatch] = useReducer(reducer, {history: [Array(9).fill(null)], currentMove: 0})
   const [sortAsc, setSortAsc] = useState(null);
   const [xMoves, setXMoves] = useState([]);
   const [oMoves, setOMoves] = useState([]);
-  const [currentMove, setCurrentMove] = useState(0);
-  const currentSquares = history[currentMove];
+  const currentSquares = state.history[state.currentMove];
   function handlePlay(nextSquares) {
+    dispatch({type: 'handlePlay', payload: nextSquares});
   }
   function jumpTo(nextMove) {
-    setCurrentMove(nextMove);
+    dispatch({type: 'jump_to_move', payload: nextMove});
   }
-  const moves = history.map((squares, move) => {
+  const moves = state.history.map((squares, move) => {
     let description;
     if (move > 0) {
-      move === currentMove
+      move === state.currentMove
         ? (description = "You are at move #" + move)
         : (description = "Go to move #" + move);
     } else {
@@ -53,7 +52,7 @@ export default function Game() {
         <Board
           squares={currentSquares}
           onPlay={handlePlay}
-          currentMove={currentMove}
+          currentMove={state.currentMove}
         />
       </div>
       <div className="game-info">
