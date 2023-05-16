@@ -5,7 +5,7 @@ import getAllIndexes from "./helpers/getAllIndexes";
 import {reducer} from "./components/reducer";
 
 export default function Game() {
-  const [state, dispatch] = useReducer(reducer, {history: [Array(9).fill(null)], currentMove: 0, sortAsc: null})
+  const [state, dispatch] = useReducer(reducer, {history: [Array(9).fill(null)], currentMove: 0, sortAsc: null, xMoves: []})
   const [xMoves, setXMoves] = useState([]);
   const [oMoves, setOMoves] = useState([]);
   const currentSquares = state.history[state.currentMove];
@@ -31,11 +31,7 @@ export default function Game() {
     );
   });
   useEffect(() => {
-    setXMoves(
-      getAllIndexes(currentSquares, "X").map((element) => {
-        return locations[element];
-      })
-    );
+    dispatch({type: 'new_X_move', payload: currentSquares})
     setOMoves(
       getAllIndexes(currentSquares, "O").map((element) => {
         return locations[element];
@@ -63,7 +59,7 @@ export default function Game() {
         </button>
         <ol>{moves}</ol>
         <div className="moves-info">
-          'X' player moves <br /> {xMoves}
+          'X' player moves <br /> {state.xMoves}
         </div>
         <div className="moves-info">
           'O' player moves <br /> {oMoves}
