@@ -9,6 +9,7 @@ export const reducer = (state, action) => {
     case 'jump_to_move':
         console.log(state.history[action.payload])
         return {
+            history: state.history,
             currentMove: action.payload,
         }        
 }
