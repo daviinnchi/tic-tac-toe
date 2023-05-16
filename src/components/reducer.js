@@ -11,6 +11,12 @@ export const reducer = (state, action) => {
         return {
             history: state.history,
             currentMove: action.payload,
+        }
+    case 'sort_history':
+        return {
+            history: state.history,
+            currentMove: state.currentMove,
+            sortAsc: action.payload,
         }        
 }
 };

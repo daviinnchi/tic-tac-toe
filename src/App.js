@@ -5,8 +5,7 @@ import getAllIndexes from "./helpers/getAllIndexes";
 import {reducer} from "./components/reducer";
 
 export default function Game() {
-  const [state, dispatch] = useReducer(reducer, {history: [Array(9).fill(null)], currentMove: 0})
-  const [sortAsc, setSortAsc] = useState(null);
+  const [state, dispatch] = useReducer(reducer, {history: [Array(9).fill(null)], currentMove: 0, sortAsc: null})
   const [xMoves, setXMoves] = useState([]);
   const [oMoves, setOMoves] = useState([]);
   const currentSquares = state.history[state.currentMove];
@@ -43,7 +42,7 @@ export default function Game() {
       })
     );
   }, [currentSquares]);
-  if (!sortAsc) {
+  if (!state.sortAsc) {
     moves.reverse();
   }
   return (
@@ -56,10 +55,10 @@ export default function Game() {
         />
       </div>
       <div className="game-info">
-        <button className="sort-btn" onClick={() => setSortAsc(true)}>
+        <button className="sort-btn" onClick={() => dispatch({type: 'sort_history', payload: true})}>
           Sort by ascending order
         </button>
-        <button className="sort-btn" onClick={() => setSortAsc(false)}>
+        <button className="sort-btn" onClick={() => dispatch({type: 'sort_history', payload: false})}>
           Sort by descending order
         </button>
         <ol>{moves}</ol>
