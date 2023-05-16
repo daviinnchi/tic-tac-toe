@@ -1,4 +1,4 @@
-.square {
+.board_row__square {
   background: #fff;
   border: 1px solid #999;
   float: left;
@@ -12,7 +12,7 @@
   width: 34px;
 }
 
-.square-winner {
+.square__winner {
   background: yellow;
   border: 1px solid #999;
   float: left;

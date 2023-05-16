@@ -1,5 +1,5 @@
-export default function getAllIndexes(val) {
+export default function getAllIndexes(arr, val) {
     let indexes = []
-    indexes.forEach(() => indexes.push(val));
+    arr.forEach((element, index) => element === val && indexes.push(index));
     return indexes;
   }
