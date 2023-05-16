@@ -1,6 +1,14 @@
 import React, { useEffect } from "react";
 
-export const GameInfo = ({history, currentMove, currentSquares, sortAsc, xMoves, oMoves, dispatch}) => {
+export const GameInfo = ({
+  history,
+  currentMove,
+  currentSquares,
+  sortAsc,
+  xMoves,
+  oMoves,
+  dispatch,
+}) => {
   function jumpTo(nextMove) {
     dispatch({ type: "jump_to_move", payload: nextMove });
   }
