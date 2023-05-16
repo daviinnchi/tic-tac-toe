@@ -1,19 +1,18 @@
-import { useEffect, useState } from "react";
+import { useEffect, useReducer, useState } from "react";
 import { locations } from "./helpers/locations";
 import Board from "./components/Board/Board";
 import getAllIndexes from "./helpers/getAllIndexes";
+import {reducer} from "./components/reducer";
 
 export default function Game() {
   const [history, setHistory] = useState([Array(9).fill(null)]);
+  const [state, dispatch] = useReducer(reducer, {history: [Array(9).fill(null)], currentMove: 0})
   const [sortAsc, setSortAsc] = useState(null);
   const [xMoves, setXMoves] = useState([]);
   const [oMoves, setOMoves] = useState([]);
   const [currentMove, setCurrentMove] = useState(0);
   const currentSquares = history[currentMove];
   function handlePlay(nextSquares) {
-    const nextHistory = [...history.slice(0, currentMove + 1), nextSquares];
-    setHistory(nextHistory);
-    setCurrentMove(nextHistory.length - 1);
   }
   function jumpTo(nextMove) {
     setCurrentMove(nextMove);
