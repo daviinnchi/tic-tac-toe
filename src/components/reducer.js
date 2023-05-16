@@ -41,5 +41,6 @@ export const reducer = (state, action) => {
         }),
         xMoves: state.xMoves,
       };
+    default: throw Error("Unknown action");
   }
 };
