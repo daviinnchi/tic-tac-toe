@@ -19,7 +19,7 @@ export default function Game() {
   }
   return (
     <div className="game">
-      <div className="game-board">
+      <div className="game_board">
         <Board
           squares={currentSquares}
           onPlay={handlePlay}

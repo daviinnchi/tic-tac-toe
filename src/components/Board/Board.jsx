@@ -31,9 +31,9 @@ const Board = ({ onPlay, currentMove, squares }) => {
   ];
   return (
     <>
-      <div className="game_board game_board__status">{status}</div>
+      <div className="game_board__status">{status}</div>
       {columns.map((squareIndex) => (
-        <div className="game_board game_board__board_row" key={squareIndex}>
+        <div className="game_board__board_row" key={squareIndex}>
           {squareIndex.map((index) => {
             return (
               <Square
