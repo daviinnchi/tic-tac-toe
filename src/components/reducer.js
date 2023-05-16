@@ -30,6 +30,16 @@ export const reducer = (state, action) => {
         xMoves: getAllIndexes(action.payload, "X").map((element) => {
           return locations[element];
         }),
+        oMoves: state.oMoves,
+      };
+    case "new_O_move":
+      return {
+        history: state.history,
+        currentMove: state.currentMove,
+        oMoves: getAllIndexes(action.payload, "O").map((element) => {
+          return locations[element];
+        }),
+        xMoves: state.xMoves,
       };
   }
 };
