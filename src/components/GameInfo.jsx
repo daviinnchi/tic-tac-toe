@@ -36,24 +36,24 @@ export const GameInfo = ({
   }
   return (
     <>
-      <div className="game-info">
+      <div className="game_info">
         <button
-          className="sort-btn"
+          className="game_info game-info__button"
           onClick={() => dispatch({ type: "sort_history", payload: true })}
         >
           Sort by ascending order
         </button>
         <button
-          className="sort-btn"
+          className="game_info game-info__button"
           onClick={() => dispatch({ type: "sort_history", payload: false })}
         >
           Sort by descending order
         </button>
         <ol>{moves}</ol>
-        <div className="moves-info">
+        <div className="game_info game_info__moves_info">
           'X' player moves <br /> {xMoves}
         </div>
-        <div className="moves-info">
+        <div className="game_info game_info__moves_info">
           'O' player moves <br /> {oMoves}
         </div>
       </div>
