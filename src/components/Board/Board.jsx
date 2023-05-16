@@ -2,8 +2,8 @@ import { Square } from "../Square/Square";
 import calculateWinner from "../../helpers/calculateWinner";
 import { getWinnerLine } from "../../helpers/getWinnerLine";
 import { xIsNext } from "../../helpers/xIsNext";
-import "./Board.css"
-const Board = ({ squares, onPlay, currentMove }) => {
+import "./Board.css";
+const Board = ({ onPlay, currentMove, squares }) => {
   const winner = calculateWinner(squares);
   const winnerLine = getWinnerLine(squares);
   let status;
@@ -41,7 +41,6 @@ const Board = ({ squares, onPlay, currentMove }) => {
                 key={index}
                 value={squares[index]}
                 handleClick={() => handleClick(index)}
-                squareId={index}
               />
             );
           })}

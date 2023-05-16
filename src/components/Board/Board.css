@@ -4,3 +4,6 @@
   align-items: center;
   flex-direction: column;
 }
+.status {
+  margin-bottom: 10px;
+}

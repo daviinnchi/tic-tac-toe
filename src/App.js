@@ -35,12 +35,12 @@ export default function Game() {
   });
   useEffect(() => {
     setXMoves(
-      getAllIndexes(currentSquares, "X").map((element, index) => {
+      getAllIndexes(currentSquares, "X").map((element) => {
         return locations[element];
       })
     );
     setOMoves(
-      getAllIndexes(currentSquares, "O").map((element, index) => {
+      getAllIndexes(currentSquares, "O").map((element) => {
         return locations[element];
       })
     );
